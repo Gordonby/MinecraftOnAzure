@@ -2,7 +2,7 @@
 
 ## Creating the cluster
 
-https://azure.github.io/AKS-Construction/?ops=none&secure=low&deploy.clusterName=aksgeneral&deploy.rg=akspersist&cluster.vmSize=Standard_B2s&addons.monitor=aci&cluster.enable_aad=true&cluster.AksDisableLocalAccounts=true
+https://azure.github.io/AKS-Construction/?ops=none&secure=low&deploy.clusterName=aksgeneral&deploy.rg=akspersist&cluster.vmSize=Standard_B2s&addons.monitor=aci&cluster.enable_aad=true&cluster.AksDisableLocalAccounts=true&deploy.location=WestEurope
 
 ## Picking the right node
 
@@ -41,6 +41,7 @@ Sizing up nodes isn't supported, so i recreated the cluster.
 # Deploy template with in-line parameters
 az deployment group create -g akspersist  --template-uri https://github.com/Azure/AKS-Construction/releases/download/0.9.2/main.json --parameters \
 	resourceName=aksgeneral \
+	location=westeurope \
 	JustUseSystemPool=true \
 	agentVMSize=Standard_B2ms \
 	enable_aad=true \

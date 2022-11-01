@@ -1,5 +1,8 @@
 # Running Minecraft on AKS
 
+## Creating the cluster
+
+
 ## Picking the right node
 
 I started off using the `Standard_B2s` VM size, with a cluster size of 1 node.
@@ -21,3 +24,24 @@ minecraft     70s         Warning   FailedScheduling            pod/minecraftg-f
 minecraft     3m17s       Normal    SuccessfulCreate            replicaset/minecraftg-fdf76df5c         Created pod: minecraftg-fdf76df5c-xtl62
 
 ![image](https://user-images.githubusercontent.com/17914476/199239005-49284bf8-0e70-4a55-8408-a225ff8a20ed.png)
+
+
+## Boosting the VM size
+
+Given the memory problem, it was time to recreate with more horsepower.
+
+I chose the `Standard_B2ms` because it has double the memory available.
+
+![image](https://user-images.githubusercontent.com/17914476/199243722-ae19668b-e819-4bf3-be12-7bb6f337e2f5.png)
+
+Sizing up nodes isn't supported, so i recreated the cluster.
+
+```bash
+# Deploy template with in-line parameters
+az deployment group create -g akspersist  --template-uri https://github.com/Azure/AKS-Construction/releases/download/0.9.2/main.json --parameters \
+	resourceName=aksgeneral \
+	JustUseSystemPool=true \
+	agentVMSize=Standard_B2ms \
+	omsagent=true \
+	retentionInDays=30
+```

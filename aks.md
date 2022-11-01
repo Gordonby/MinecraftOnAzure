@@ -2,6 +2,7 @@
 
 ## Creating the cluster
 
+https://azure.github.io/AKS-Construction/?ops=none&secure=low&deploy.clusterName=aksgeneral&deploy.rg=akspersist&cluster.vmSize=Standard_B2s&addons.monitor=aci&cluster.enable_aad=true&cluster.AksDisableLocalAccounts=true
 
 ## Picking the right node
 
@@ -42,6 +43,10 @@ az deployment group create -g akspersist  --template-uri https://github.com/Azur
 	resourceName=aksgeneral \
 	JustUseSystemPool=true \
 	agentVMSize=Standard_B2ms \
+	enable_aad=true \
+	AksDisableLocalAccounts=true \
+	enableAzureRBAC=true \
+	adminPrincipalId=$(az ad signed-in-user show --query id --out tsv) \
 	omsagent=true \
 	retentionInDays=30
 ```

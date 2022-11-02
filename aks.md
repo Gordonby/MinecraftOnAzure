@@ -51,3 +51,7 @@ az deployment group create -g akspersist  --template-uri https://github.com/Azur
 	omsagent=true \
 	retentionInDays=30
 ```
+
+## Azure Monitor
+
+![image](https://user-images.githubusercontent.com/17914476/199448459-33bd1181-fc2f-4bc3-949c-a0ae9e0cdf29.png)

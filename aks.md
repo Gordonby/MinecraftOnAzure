@@ -8,7 +8,7 @@ AKS Construction is a tool for accelerating AKS environment deployment. The link
 
 https://azure.github.io/AKS-Construction/?ops=none&secure=low&deploy.clusterName=kubegeneral&deploy.rg=akspersist&cluster.vmSize=Standard_B2s&addons.monitor=aci&cluster.enable_aad=true&cluster.AksDisableLocalAccounts=false&deploy.location=WestEurope&cluster.agentCount=1
 
-## Picking the right node
+## Picking the right VM compute node
 
 I started off using the `Standard_B2s` VM size, with a cluster size of 1 node.
 
@@ -16,9 +16,7 @@ Having a cluster size of 1 makes sense because the system pods really don't take
 
 ![image](https://user-images.githubusercontent.com/17914476/199238554-6e326c80-ab89-4cd7-8240-46e43332ea4b.png)
 
-
-
-## Memory Contention.
+### Memory Contention.
 
 Even though the node still has 1GB of free memory, i was finding that i was getting low memory reports on the node itself which led to Minecraft being restarted.
 
@@ -31,7 +29,7 @@ minecraft     3m17s       Normal    SuccessfulCreate            replicaset/minec
 ![image](https://user-images.githubusercontent.com/17914476/199239005-49284bf8-0e70-4a55-8408-a225ff8a20ed.png)
 
 
-## Boosting the VM size
+### Boosting the VM size
 
 Given the memory problem, it was time to recreate with more horsepower.
 

@@ -1,5 +1,7 @@
 # Running Minecraft on AKS
 
+The Azure Kubernetes Service is a managed compute platform for running orchestrating containers. It is a lot more complex that some of the other Azure services for hosting container workloads, so is best suited when you already use AKS or have a strong preference to Kubernetes as an orchestrator.
+
 ## Creating the cluster
 
 https://azure.github.io/AKS-Construction/?ops=none&secure=low&deploy.clusterName=kubegeneral&deploy.rg=akspersist&cluster.vmSize=Standard_B2s&addons.monitor=aci&cluster.enable_aad=true&cluster.AksDisableLocalAccounts=false&deploy.location=WestEurope&cluster.agentCount=1

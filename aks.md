@@ -56,4 +56,6 @@ az deployment group create -g akspersist  --template-uri https://github.com/Azur
 
 ## Azure Monitor
 
+Using Container Insights through Azure Monitor is a great way to capture both container and cluster logs. However the pods needed for monitoring do require significant resources, so if logging is not a priority then it can be disabled.
+
 ![image](https://user-images.githubusercontent.com/17914476/199448459-33bd1181-fc2f-4bc3-949c-a0ae9e0cdf29.png)

@@ -29,6 +29,6 @@ minecraft     minecraftg-7f97567976-hrvrn           1/1     Running       0     
 ```
 NAMESPACE     LAST SEEN   TYPE      REASON             OBJECT                                    MESSAGE
 kube-system   15m         Warning   FailedScheduling   pod/konnectivity-agent-56c579674d-qm4mg   0/1 nodes are available: 1 node(s) had taint {node.kubernetes.io/unreachable: }, that the pod didn't tolerate.
-```kube
+```
 
 > Error from server (ServiceUnavailable): the server is currently unable to handle the request (get pods.metrics.k8s.io)

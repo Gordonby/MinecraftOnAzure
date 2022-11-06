@@ -6,6 +6,8 @@ These are problems i've experienced running Minecraft on AKS.
 
 ### konnectivity-agent scheduling / node unreachable
 
+The node was not in a healthy state. As a 1 node cluster, the service was unavailable until the node was rebooted.
+
 ```
 NAMESPACE     NAME                                  READY   STATUS        RESTARTS   AGE
 kube-system   ama-logs-8gj22                        2/2     Running       0          5d4h

@@ -6,7 +6,7 @@ These are problems i've experienced running Minecraft on AKS.
 
 ### konnectivity-agent scheduling / node unreachable
 
-The node was not in a healthy state. As a 1 node cluster, the service was unavailable until the node was rebooted.
+The node was not in a healthy state. As a 1 node cluster, the service was unavailable until the node was rebooted. To mitigate against the downtime, 2 nodes should have been deployed.
 
 ```
 NAMESPACE     NAME                                  READY   STATUS        RESTARTS   AGE

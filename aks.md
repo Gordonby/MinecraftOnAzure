@@ -59,3 +59,60 @@ az deployment group create -g akspersist  --template-uri https://github.com/Azur
 Using Container Insights through Azure Monitor is a great way to capture both container and cluster logs. However the pods needed for monitoring do require significant resources, so if logging is not a priority then it can be disabled.
 
 ![image](https://user-images.githubusercontent.com/17914476/199448459-33bd1181-fc2f-4bc3-949c-a0ae9e0cdf29.png)
+
+## More node problems
+
+```
+kubectl describe nodes
+Name:               aks-npsystem-38920627-vmss000006
+Roles:              agent
+
+  Type                          Status    LastHeartbeatTime                 LastTransitionTime                Reason                          Message
+  ----                          ------    -----------------                 ------------------                ------                          -------
+  KubeletProblem                False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:06 +0000   KubeletIsUp                     kubelet service is up
+  FreezeScheduled               False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:06 +0000   NoFreezeScheduled               VM has no scheduled Freeze event
+  FrequentDockerRestart         False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:06 +0000   NoFrequentDockerRestart         docker is functioning properly
+  FrequentUnregisterNetDevice   False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:06 +0000   NoFrequentUnregisterNetDevice   node is functioning properly
+  TerminateScheduled            False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:06 +0000   NoTerminateScheduled            VM has no scheduled Terminate event
+  KernelDeadlock                False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:06 +0000   KernelHasNoDeadlock             kernel has no deadlock
+  FrequentContainerdRestart     False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:06 +0000   NoFrequentContainerdRestart     containerd is functioning properly
+  RedeployScheduled             False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:06 +0000   NoRedeployScheduled             VM has no scheduled Redeploy event
+  FrequentKubeletRestart        False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:06 +0000   NoFrequentKubeletRestart        kubelet is functioning properly
+  PreemptScheduled              False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:57 +0000   NoPreemptScheduled              VM has no scheduled Preempt event
+  ContainerRuntimeProblem       False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:06 +0000   ContainerRuntimeIsUp            container runtime service is up
+  RebootScheduled               False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:06 +0000   NoRebootScheduled               VM has no scheduled Reboot event
+  VMEventScheduled              False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:56 +0000   NoVMEventScheduled              VM has no scheduled event
+  FilesystemCorruptionProblem   False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:06 +0000   FilesystemIsOK                  Filesystem is healthy
+  ReadonlyFilesystem            False     Wed, 09 Nov 2022 00:02:07 +0000   Tue, 08 Nov 2022 13:40:06 +0000   FilesystemIsNotReadOnly         Filesystem is not read-only
+  MemoryPressure                Unknown   Tue, 08 Nov 2022 23:57:38 +0000   Wed, 09 Nov 2022 00:03:11 +0000   NodeStatusUnknown               Kubelet stopped posting node status.
+  DiskPressure                  Unknown   Tue, 08 Nov 2022 23:57:38 +0000   Wed, 09 Nov 2022 00:03:11 +0000   NodeStatusUnknown               Kubelet stopped posting node status.
+  PIDPressure                   Unknown   Tue, 08 Nov 2022 23:57:38 +0000   Wed, 09 Nov 2022 00:03:11 +0000   NodeStatusUnknown               Kubelet stopped posting node status.
+  Ready                         Unknown   Tue, 08 Nov 2022 23:57:38 +0000   Wed, 09 Nov 2022 00:03:11 +0000   NodeStatusUnknown               Kubelet stopped posting node status.
+
+  Namespace                   Name                                   CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                   ------------  ----------  ---------------  -------------  ---
+  kube-system                 ama-logs-8ztvx                         150m (7%)     1 (52%)     550Mi (10%)      1774Mi (33%)   31h
+  kube-system                 ama-logs-rs-54b8874476-bkcc9           150m (7%)     1 (52%)     250Mi (4%)       1Gi (19%)      31h
+  kube-system                 azure-ip-masq-agent-z5nvw              100m (5%)     500m (26%)  50Mi (0%)        250Mi (4%)     31h
+  kube-system                 cloud-node-manager-hd6cv               50m (2%)      0 (0%)      50Mi (0%)        512Mi (9%)     31h
+  kube-system                 coredns-autoscaler-5589fb5654-79stc    20m (1%)      200m (10%)  10Mi (0%)        500Mi (9%)     31h
+  kube-system                 coredns-b4854dd98-4b5z9                100m (5%)     3 (157%)    70Mi (1%)        500Mi (9%)     31h
+  kube-system                 coredns-b4854dd98-vlk9l                100m (5%)     3 (157%)    70Mi (1%)        500Mi (9%)     31h
+  kube-system                 csi-azuredisk-node-nlvwb               30m (1%)      0 (0%)      60Mi (1%)        400Mi (7%)     31h
+  kube-system                 csi-azurefile-node-dffn5               30m (1%)      0 (0%)      60Mi (1%)        600Mi (11%)    31h
+  kube-system                 konnectivity-agent-56c579674d-n57sg    20m (1%)      1 (52%)     20Mi (0%)        1Gi (19%)      31h
+  kube-system                 konnectivity-agent-56c579674d-xj5gt    20m (1%)      1 (52%)     20Mi (0%)        1Gi (19%)      31h
+  kube-system                 kube-proxy-t9wvt                       100m (5%)     0 (0%)      0 (0%)           0 (0%)         31h
+  kube-system                 metrics-server-f77b4cd8-9rcv7          44m (2%)      1 (52%)     55Mi (1%)        2000Mi (37%)   31h
+  kube-system                 metrics-server-f77b4cd8-khcgv          44m (2%)      1 (52%)     55Mi (1%)        2000Mi (37%)   31h
+  minecraft                   minecraftg-7f97567976-t8k77            500m (26%)    2 (105%)    2000Mi (37%)     3000Mi (55%)   31h
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests      Limits
+  --------           --------      ------
+  cpu                1458m (76%)   14700m (773%)
+  memory             3320Mi (61%)  15108Mi (281%)
+  ephemeral-storage  0 (0%)        0 (0%)
+  hugepages-1Gi      0 (0%)        0 (0%)
+  hugepages-2Mi      0 (0%)        0 (0%)
+```

@@ -103,6 +103,7 @@ resource protectedItem 'Microsoft.RecoveryServices/vaults/backupFabrics/protecti
     protectedItemType: 'AzureFileShareProtectedItem'
     sourceResourceId: storageaccount.id
     policyId: dailyPolicy.id
+    #disable-next-line BCP037 //Disabling validation as this is required, type not available
     isInlineInquiry: true
   }
 }

@@ -1,4 +1,4 @@
-param nameseed string = 'minecraft8'
+param nameseed string = 'minecraft'
 param createAcr bool = false
 param existingContainerRegistryName string = ''
 param existingContainerRegistryGroup string = ''

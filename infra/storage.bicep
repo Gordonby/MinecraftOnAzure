@@ -106,3 +106,6 @@ resource protectedItem 'Microsoft.RecoveryServices/vaults/backupFabrics/protecti
     isInlineInquiry: true
   }
 }
+
+output AccountName string = storageaccount.name
+output ShareName string = storageShareName

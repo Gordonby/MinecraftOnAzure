@@ -41,3 +41,5 @@ resource acr 'Microsoft.ContainerRegistry/registries@2022-02-01-preview' = if(cr
 }
 
 output AcrImage string = createAcr || (!empty(existingContainerRegistryGroup) && !empty(existingContainerRegistryName)) ? first(acrImport.outputs.importedImages) : ''
+output StorageAccountName string = storage.outputs.AccountName
+output StorageShareName string = storage.outputs.ShareName

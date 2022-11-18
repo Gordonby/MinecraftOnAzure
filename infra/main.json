@@ -11,7 +11,7 @@
   "parameters": {
     "nameseed": {
       "type": "string",
-      "defaultValue": "minecraft8"
+      "defaultValue": "minecraft"
     },
     "createAcr": {
       "type": "bool",

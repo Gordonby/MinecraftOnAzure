@@ -1,5 +1,9 @@
 # Minecraft On Azure
 
+> Repo is archived
+> It has moved to https://gitlab.com/Gordonby/MinecraftOnAzure
+
+
 This repo provides assets to run Minecraft on Azure
 
 ## Considerations

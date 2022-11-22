@@ -6,7 +6,7 @@ The Azure Kubernetes Service is a managed compute platform for running orchestra
 
 AKS Construction is a tool for accelerating AKS environment deployment. The link below takes you to the tool, using a preset configuration optimised for Minecraft.
 
-https://azure.github.io/AKS-Construction/?ops=none&secure=low&deploy.clusterName=kubegeneral&deploy.rg=akspersist&cluster.vmSize=Standard_B2s&addons.monitor=aci&cluster.enable_aad=true&cluster.AksDisableLocalAccounts=false&deploy.location=WestEurope&cluster.agentCount=1
+https://azure.github.io/AKS-Construction/?ops=none&secure=low&deploy.clusterName=kubegeneral&deploy.rg=akspersist&cluster.vmSize=Standard_B2ms&addons.monitor=aci&cluster.enable_aad=true&cluster.AksDisableLocalAccounts=false&deploy.location=WestEurope&cluster.agentCount=1&cluster.osDiskType=Managed&cluster.SystemPoolType=CostOptimised&cluster.nodepoolName=minecraft&deploy.kubernetesVersion=1.24.6&addons.logDataCap=1&addons.azurepolicy=none
 
 ## Picking the right VM compute node
 

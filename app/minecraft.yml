@@ -1,0 +1,96 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: minecraft-bedrock-env
+  labels:
+    role: service-config
+    app: minecraft
+data:
+  EULA: "TRUE"
+  VERSION: "1.19.40.02"
+  GAMEMODE: "survival"
+  TICK_DISTANCE: "4"
+  DIFFICULTY: "easy"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft
+  namespace: minecraft
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: minecraft
+    spec:
+      containers:
+      - name: minecraft
+        image: docker.io/itzg/minecraft-bedrock-server:latest
+        #readinessProbe:
+        #  exec:
+        #      command:
+        #        - mc-monitor
+        #        - status-bedrock
+        #        - --host
+        #        # force health check against IPv4 port
+        #        - 127.0.0.1
+        #  initialDelaySeconds: 90
+        #livenessProbe:
+        #  exec:
+        #      command:
+        #        - mc-monitor
+        #        - status-bedrock
+        #        - --host
+        #        # force health check against IPv4 port
+        #        - 127.0.0.1
+        #  initialDelaySeconds: 90
+        resources:
+          requests:
+            memory: "2000Mi"
+            cpu: "500m"
+          limits:
+            memory: "3000Mi"
+            cpu: "2000m"
+        ports:
+        - containerPort: 19132
+        - containerPort: 19133
+        envFrom:
+          - configMapRef:
+              name: minecraft-bedrock-env
+        volumeMounts:
+        - name: azurefileshare
+          mountPath: "/data"
+      volumes:
+      - name: azurefileshare
+        azureFile:
+          secretName: minecraft-storage-secret
+          shareName: myworld
+          readOnly: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft
+  namespace: minecraft
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 19132
+    targetPort: 19132
+    protocol: UDP
+    name: mine4
+  - port: 19133
+    targetPort: 19133
+    protocol: UDP
+    name: mine6
+  selector:
+    app: minecraft
